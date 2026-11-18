@@ -5,7 +5,7 @@
 
 Dear Dr. Bagno,
 
-I am Daniel Liezrowice, from the Engineering Software Lab (ESL). We develop an automated mathematical workflow we call the MantiQ Factor: Mathematica for exact computation, Python for an independent cross-check, and Lean 4 for a formal, machine-checked guard. We ran it end to end on your recent paper with Dr. Maria Garber, "Touchard-Riordan Polynomials and Schur-positivity of Set Partitions" (arXiv:2606.13149), and I would like to share the results with you, because they concern Theorem 3.1 directly.
+I am Daniel Liezrowice, from the Engineering Software Lab (ESL). We develop an automated mathematical workflow we call the MantiQ Factor: Mathematica for exact computation, Python for an independent cross-check, and Lean 4 for a formal, machine-checked guard. We ran it end to end on your recent paper with Dr. David Garber, "Touchard-Riordan Polynomials and Schur-positivity of Set Partitions" (arXiv:2606.13149), and I would like to share the results with you, because they concern Theorem 3.1 directly.
 
 **1. What we found**
 
@@ -17,7 +17,7 @@ We then swept the whole parameter space. The identity holds exactly when ell = 1
 
 The proof idea of the paper (mapping partitions to chord diagrams and borrowing the Touchard-Riordan count) is not salvageable as is, because the map is injective but not surjective: chord diagrams whose chords would force forbidden adjacencies are never hit. The fibers are exactly the descent runs.
 
-The statement that survives, and that we verified to n = 7 in all three systems, is:
+The statement that survives, and that we verified in all three systems (Wolfram to n = 6, Python to n = 7, Lean 4 to n = 5), is:
 
 Q_n(Set(n, ell)) = Sum over k of A(n-k, ell, q) * s_(n-k, 1^k)
 
