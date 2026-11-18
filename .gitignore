@@ -1,0 +1,18 @@
+# the paper itself lives on arXiv; do not redistribute it here
+2606.13149v1.pdf
+paper_text.txt
+page*.png
+
+# Lean build artifacts
+lean/.lake/
+*.olean
+*.ilean
+*.c
+*.o
+
+# Python
+__pycache__/
+*.pyc
+
+# local tooling
+.amp/
