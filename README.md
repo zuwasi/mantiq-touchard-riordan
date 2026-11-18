@@ -112,7 +112,7 @@ controls are plain `Manipulate` objects; no extra packages are required.
 ## Status of the failure pattern
 
 The characterization "fails exactly when `ell >= 2` and `n - ell >= 2`" is
-verified up to `n = 7` in Python and Wolfram and up to `n = 5` in Lean; beyond
-that it is a conjecture. Proving it in general is a natural follow-up problem,
+verified up to `n = 7` in Python, `n = 6` in Wolfram, and `n = 5` in Lean;
+beyond that it is a conjecture. Proving it in general is a natural follow-up problem,
 and the collapse lemma reduces it to comparing `A(m, ell, q)` with
 Touchard-Riordan values.

@@ -12,7 +12,7 @@ that is not executable somewhere.
 | 4 | Paper Theorem 3.1 RHS hook coefficients | PaperRHS[n, ell, q, vars] | paper_rhs | paperCoeff, touchardRiordanT (T_{2b} by enumerating matchings) |
 | 5 | Paper Theorem 3.1 FALSE from (4,2); census ell >= 2 and n - ell >= 2 | RunProofAudit A5, V2 | verify3.py V2 (n <= 7) | census_5: fails exactly {(4,2), (5,2), (5,3)} for n <= 5 |
 | 6 | Corrected theorem hook coefficients A(n-k, ell, q) | CorrectedRHS + RunValidationSuite V1, RunProofAudit A4 | verify3.py V1 (n <= 7) | ACoeff (coefficient lists); census compares against paperCoeff |
-| 7 | Collapse lemma c_D(n,ell) = A(n-|D|,ell,q) for all D | RunValidationSuite V3, RunProofAudit A10 | verify3.py V3 | collapse_4_2_allD, collapse_5_3_allD, collapse_all_n4 (every descent set) |
+| 7 | Collapse lemma c_D(n,ell) = A(n-|D|,ell,q) for all D | RunValidationSuite V3, RunProofAudit A10 | verify3.py V3 | collapse_4_2_allD, collapse_5_3_allD, collapse_all_n4 (every descent set at (4,2) and (5,3); every (n,ell) with n <= 4) |
 | 8 | A(4,2,q) = q and T_{3,2}(q) = 0 | RunProofAudit A1-A2, V6 | verify3.py V6 | A_4_2, T_3_2, counterexample_4_2 |
 | 9 | ell = 1: Q = e_n = s_(1^n) | V4, A6 | V4 | (not formalized: Schur machinery) |
 | 10 | ell = n: Q = s_(n) | V5, A7 | V5 | (not formalized: Schur machinery) |
@@ -37,8 +37,11 @@ agree on every overlapping claim.
   with no shared code. Agreement up to n = 7 (293 failing pairs identified
   matches the Wolfram census exactly) rules out an implementation artifact.
 - **Lean 4** is the formal guard: first-order definitions and brute-force
-  enumeration prove the counterexample, the corrected identity, the collapse
-  lemma and the boundary cases up to n = 5 with no trusted algebra kernel.
+  enumeration via `native_decide` (trusted compiler evaluation, not a kernel
+  proof term) check the counterexample, the failure census, the collapse lemma
+  at `(4,2)` and `(5,3)` over every descent set and for every `(n, ell)` with
+  n <= 4, and the sequence identities up to n = 5-7. It deliberately does not
+  formalize the multivariate symmetric-function layer.
 
 ## Division of labor for a new paper
 
