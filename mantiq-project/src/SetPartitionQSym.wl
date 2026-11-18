@@ -235,7 +235,7 @@ PartitionArcDiagram[rgs_List] := Module[
         Text[Style[j, 10], {j, 0.12}]}, {j, n}],
     {GrayLevel[0.5], Line[{{1, 0}, {n, 0}}]},
     Table[With[{u = a[[1]], v = a[[2]]},
-      {cols[[rgs[[u]]]], Circle[{(u + v)/2, 0}, (v - u)/2, {0, Pi}]}],
+      {cols[[rgs[[u]] + 1]], Circle[{(u + v)/2, 0}, (v - u)/2, {0, Pi}]}],
       {a, arcs}]},
     ImageSize -> 340, PlotRange -> {{0.4, n + 0.6}, {-0.4, 1.4}}]
 ]
