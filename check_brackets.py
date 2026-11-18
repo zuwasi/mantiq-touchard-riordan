@@ -1,5 +1,5 @@
-import sys
-path = r"C:\Amp_demos\Eli-Bango-JCT\mantiq-project\src\SetPartitionQSym.wl"
+import os, sys
+path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mantiq-project", "src", "SetPartitionQSym.wl")
 text = open(path, encoding="utf-8").read()
 pairs = {"[": "]", "(": ")", "{": "}"}
 closes = {"]": "[", ")": "(", "}": "{"}

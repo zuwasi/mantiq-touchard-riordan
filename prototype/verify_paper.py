@@ -33,7 +33,7 @@
 from itertools import combinations, product
 from math import comb, factorial
 from functools import lru_cache
-import json, sys
+import json, os, sys
 
 def set_partitions(n):
     """Restricted growth strings: all set partitions of [n]."""
@@ -269,5 +269,5 @@ for m in [3, 4, 5]:
     print(f"mean cr for 2m={2*m}: {mean:.4f} (m(m-1)/4 = {m*(m-1)/4})")
 
 json.dump({"C1": C1, "C2": C2, "C3": C3, "C4": C4, "C5": C5, "insights": ins},
-          open(r"C:\Amp_demos\Eli-Bango-JCT\prototype\verify_results.json", "w"), indent=1)
+          open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "verify_results.json"), "w"), indent=1)
 print("\nALL CORE CHECKS:", "PASS" if all([C1,C2,C3,C4,C5]) else "SOME FAILED")
