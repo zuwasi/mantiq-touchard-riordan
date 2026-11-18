@@ -33,7 +33,7 @@ Reading the corrected table at q = 1 gives a new identity, verified in all three
 
 - Full workflow repository (Wolfram package, teaching notebook, audit scripts, Python verifier, Lean 4 library, figures, documentation): https://github.com/zuwasi/mantiq-touchard-riordan
 - A technical slide deck describing the audit: https://zuwasi.github.io/Public-html-pages/mantiq-touchard-riordan/technical/
-- A short demo video (about 5 minutes) walking through the audit; I am happy to send it or walk you through it on a call.
+- A short demo video (5 minutes) walking through the audit: https://youtu.be/ukqPj2Iaz1k
 
 Everything reruns in minutes on a laptop: the Wolfram build takes about 19 seconds, the Python verifier a few seconds, the Lean build under two seconds.
 
