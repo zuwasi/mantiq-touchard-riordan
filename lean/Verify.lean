@@ -4,7 +4,10 @@ Verify.lean -- MantiQ Factor formal companion to Bagno-Garber,
 (arXiv:2606.13149).
 
 Pure Lean 4 core, no Mathlib. Every claim below is checked by brute-force
-enumeration at kernel level. What is formalized here:
+enumeration via `native_decide` (trusted compiler evaluation; only `T_3_2`
+is a plain `rfl`). In particular this is not a kernel-level proof of a
+mathematical statement about all n: it is an exhaustive finite check. What
+is formalized here:
 
   * set partitions as restricted growth strings, descent sets, crossings
   * the corrected coefficients A(m, ell, q) as coefficient lists
@@ -12,7 +15,8 @@ enumeration at kernel level. What is formalized here:
   * the smallest counterexample: A(4,2) = q is nonzero, T_{3,2} = 0
   * the census: the paper's hook coefficients differ from the corrected ones
     exactly for (n, ell) in {(4,2), (5,2), (5,3)} within n <= 5
-  * the collapse lemma c_D(n, ell) = A(n - |D|, ell, q) for every descent set
+  * the collapse lemma c_D(n, ell) = A(n - |D|, ell, q) for every descent set,
+    at (n, ell) = (4,2) and (5,3), and for every (n, ell) with n <= 4
   * Bell identity, inclusion-exclusion, Motzkin triangle, Motzkin row sums,
     Narayana hook totals (the true parts of Corollary 3.3)
 

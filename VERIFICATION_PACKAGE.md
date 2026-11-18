@@ -222,12 +222,13 @@ by the script). Expected key lines:
     T_(3,2)(q) = 0
 
 The printed `Q_4(Set(4,2))` polynomial is the direct symbolic sum over the 7
-partitions; its non-q part has no `x1^4, x2^4, x3^4, x4^4` terms and
-coefficients 1 / 1 / 3 / 6 on the weight orbits (4)/(3,1)/(2,2)/(2,1,1)/(1^4)
-of degree 4, matching the table in Section 2.
+partitions; its non-q part has no `x1^4, x2^4, x3^4, x4^4` terms (the (4)
+weight orbit has q-degree-0 coefficient 0), and its q^0 coefficients on the
+remaining weight orbits (3,1)/(2,2)/(2,1,1)/(1^4) of degree 4 are
+1 / 1 / 3 / 6, matching the table in Section 2.
 
-A broader Wolfram audit (10 checks, including the corrected theorem to n = 6
-and the exact failure census to n = 6):
+A broader Wolfram audit (11 checks A1-A11, including the corrected theorem to
+n = 6 and the exact failure census to n = 6):
 
     wolframscript -file mantiq-project\proof_audit.wls
 
@@ -240,20 +241,35 @@ finding, not a failure of the audit).
     cd lean
     lake build
 
-Expected: `Build completed successfully` (4 jobs). `lean/Verify.lean` encodes
-the partitions, the descent sets, the arc crossings, and the fundamental
-quasisymmetric functions per the paper's Definition 2.3, and proves the
-corrected identity and the failure of the paper's identity for the recorded
-pairs up to n = 5. This guards against transcription errors in the two
-script implementations; it checks the same mathematical content, not a
-third independent derivation of the Schur expansion.
+Expected: `Build completed successfully` (4 jobs). What `lean/Verify.lean`
+formalizes and proves (as finite exhaustive checks): set partitions as
+restricted growth strings with descent sets and arc crossings; the corrected
+coefficient `A(m, ell, q)` and the paper's `T_{a,b}(q)` (the latter by
+enumerating all matchings); the counterexample (`A(4,2) = q` nonzero while
+`T_{3,2} = 0`); the failure census, exactly `(4,2)`, `(5,2)`, `(5,3)` within
+n <= 5; the collapse lemma for every descent set at `(4,2)` and `(5,3)` and
+for every `(n, ell)` with n <= 4; and the Bell, inclusion-exclusion, Motzkin
+triangle, Motzkin row-sum, and Narayana identities. It does not formalize the
+fundamental quasisymmetric functions or the Schur expansion itself, so it
+checks the census and the coefficient identities, not a re-derivation of the
+Schur expansion. Proof style: 11 of the 12 theorems are `native_decide`
+(trusted compiler evaluation of an exhaustive finite enumeration), and
+`T_3_2` is `rfl`; this is a finite cross-check of the same definitions, not a
+kernel-level proof about all n. To force recompilation from scratch:
+
+    cd lean
+    lake env lean Verify.lean
+
+(exits 0 with no output when everything checks).
 
 ---
 
 ## 4. What is true instead (the corrected theorem)
 
-For all `(n, ell)` with `1 <= ell <= n` (verified: Python n <= 7, Wolfram
-n <= 6, Lean n <= 5):
+For all `(n, ell)` with `1 <= ell <= n` (corrected identity and full failure
+census: Python to n <= 7, Wolfram to n <= 6; Lean 4 verifies the census of
+failing pairs and the collapse and coefficient identities in the same finite
+range, to n <= 5):
 
     Q_n(Set(n, ell)) = sum over k of A(n-k, ell, q) * s_(n-k, 1^k)
 
@@ -270,7 +286,10 @@ says this distribution depends only on `|D|`: it equals the distribution of
 the adjacency-free partitions of `[n - |D|]` with `ell` blocks. The intuition
 is that each maximal run of descents can be collapsed by deleting the upper
 endpoint of each descent adjacency and relabeling, which preserves the arc
-structure and hence `cr`. This is Check V3 and Wolfram check A10.
+structure and hence `cr`. This is Check V3 (Python, every descent set for
+every `(n, ell)` with n <= 7); Wolfram check A10 is the spot check at
+`(n, ell) = (4,2)` for `D = {}, {1}, {2}, {3}`, and Lean proves it for every
+descent set at `(4,2)` and `(5,3)` and for every `(n, ell)` with n <= 4.
 
 Consequences, all verified:
 
